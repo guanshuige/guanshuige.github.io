@@ -84,12 +84,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="观水阁">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="●注释和换行① makefile 文件注释以“#”开头，一直到行尾的字符② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。●宏定义（也可称之为变量定义）① 宏定义的语法如下：        变量名＝变量内容② 宏的引用在引用宏时只需在变量前加“$”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于【nmake】的win32asm【makefile】书写规则说明">
+<meta property="og:url" content="http://yoursite.com/2016/11/11/基于【nmake】的win32asm【makefile】书写规则说明/index.html">
 <meta property="og:site_name" content="观水阁">
+<meta property="og:description" content="●注释和换行① makefile 文件注释以“#”开头，一直到行尾的字符② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。●宏定义（也可称之为变量定义）① 宏定义的语法如下：        变量名＝变量内容② 宏的引用在引用宏时只需在变量前加“$”">
+<meta property="og:updated_time" content="2016-11-11T03:03:49.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="观水阁">
+<meta name="twitter:title" content="基于【nmake】的win32asm【makefile】书写规则说明">
+<meta name="twitter:description" content="●注释和换行① makefile 文件注释以“#”开头，一直到行尾的字符② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。●宏定义（也可称之为变量定义）① 宏定义的语法如下：        变量名＝变量内容② 宏的引用在引用宏时只需在变量前加“$”">
 
 
 
@@ -110,10 +114,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/11/基于【nmake】的win32asm【makefile】书写规则说明/"/>
 
 
-  <title> 观水阁 </title>
+  <title> 基于【nmake】的win32asm【makefile】书写规则说明 | 观水阁 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -134,9 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -223,9 +225,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -245,10 +247,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/11/11/基于【nmake】的win32asm【makefile】书写规则说明/" itemprop="url">
-                  基于【nmake】的win32asm【makefile】书写规则说明
-                </a>
+                基于【nmake】的win32asm【makefile】书写规则说明
               
             
           </h1>
@@ -295,9 +294,7 @@
       
 
       
-        
-          
-            <p>●注释和换行<br>① makefile 文件注释以“#”开头，一直到行尾的字符<br>② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。<br>●宏定义（也可称之为变量定义）<br>① 宏定义的语法如下：<br>        变量名＝变量内容<br>② 宏的引用<br>在引用宏时只需在变量前加“$”，被引用的变量名要加圆括号，如下： </p>
+        <p>●注释和换行<br>① makefile 文件注释以“#”开头，一直到行尾的字符<br>② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。<br>●宏定义（也可称之为变量定义）<br>① 宏定义的语法如下：<br>        变量名＝变量内容<br>② 宏的引用<br>在引用宏时只需在变量前加“$”，被引用的变量名要加圆括号，如下： </p>
 <pre><code>#定义 
 EXE = Test.exe 
 #引用 
@@ -316,16 +313,20 @@ nmake ML_FLAG=&quot; /c  /coff  /F1&quot;
 <p>●隐含规则<br>①　隐含规则可以为某一类的文件指出建立的命令，它具体定义了如何将带一个特定扩展名的文件转换成具有另一种扩展名的文件，定义的格式是：<br>             .源扩展名.目标扩展名：；命令（方法一）<br>             或<br>             .源扩展名.目标扩展名： （方法二）<br>            （Tab）命令<br>② 隐含规则不能有依赖文件，所以“：”下面没有内容。<br>             .asm.obj:<br>             Ml $(ML_FLAG) $&lt;<br>             .rc.res:<br>             rc $&lt; </p>
 <p>隐含规则中无法指定确定的输入文件名，因为输入文件名是泛指的有相同扩展名的一整类文件，这时候就要用到几个特殊的内定宏来指定文件名：<br>            ▲ $@—–全路径的目标文件。<br>            ▲ $*—–除去扩展名的全路径的目标文件。<br>            ▲ $?—–所有源文件名。<br>            ▲ $&lt;—–源文件名（只能用在隐含规则中）<br>所以上述的rc $&lt;用于x.rc时就是 rc x.rc ,而用于 y.rc 时就是 rc y.rc 了。e</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -333,128 +334,32 @@ nmake ML_FLAG=&quot; /c  /coff  /F1&quot;
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/10/20/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/10/20/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-20T12:04:48+08:00" content="2016-10-20">
-              2016-10-20
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/10/20/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/20/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -462,6 +367,14 @@ nmake ML_FLAG=&quot; /c  /coff  /F1&quot;
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/11/基于【nmake】的win32asm【makefile】书写规则说明/"
+           data-title="基于【nmake】的win32asm【makefile】书写规则说明" data-url="http://yoursite.com/2016/11/11/基于【nmake】的win32asm【makefile】书写规则说明/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -481,8 +394,17 @@ nmake ML_FLAG=&quot; /c  /coff  /F1&quot;
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -518,6 +440,17 @@ nmake ML_FLAG=&quot; /c  /coff  /F1&quot;
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -614,6 +547,10 @@ nmake ML_FLAG=&quot; /c  /coff  /F1&quot;
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
