@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-13T10:01:02.000Z</updated>
+  <updated>2016-11-13T10:22:40.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>基于【nmake】的win32asm【makefile】书写规则说明</title>
+    <link href="http://yoursite.com/2016/11/13/%E5%9F%BA%E4%BA%8E%E3%80%90nmake%E3%80%91%E7%9A%84win32asm%E3%80%90makefile%E3%80%91%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E/"/>
+    <id>http://yoursite.com/2016/11/13/基于【nmake】的win32asm【makefile】书写规则说明/</id>
+    <published>2016-11-13T10:22:40.000Z</published>
+    <updated>2016-11-13T10:22:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>●注释和换行<br>① makefile 文件注释以“#”开头，一直到行尾的字符<br>② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。<br>●宏定义（也可称之为变量定义）<br>① 宏定义的语法如下：<br>        变量名＝变量内容<br>② 宏的引用<br>在引用宏时只需在变量前加“$”，被引用的变量名要加圆括号，如下： </p>
+<pre><code>#定义 
+EXE = Test.exe 
+#引用 
+$(EXE) 
+</code></pre><a id="more"></a>
+<p>③ 用宏定义的好处不言而喻，但最大的好处是是可以直接在命令行中用新的宏定义覆盖：<br>比如在原makefile中有如下宏定义： </p>
+<pre><code>#编译选项 
+ML_FLAG =  /c  /coff 
+#在命令行中输入： 
+nmake ML_FLAG=&quot; /c  /coff  /F1&quot; 
+</code></pre><p>这里有必要解释一下，此处“覆盖”的意思并不是执行本条命令后makefile文件中宏ML_FLAG的值被物理的改变成“ /c  /coff  /F1”，执行本命令后查看makefile文件，发现宏ML_FLAG的值仍为“/c  /coff ”。此处“覆盖”的真正含义是：仅在执行本条命令遇到makefile文件中宏ML_FLAG时，以“ /c  /coff  /F1”来替换执行。<br>④ 不过关于上述③的使用中有两点需要注意：<br>        ■宏名称要区分大小写，ML_FLAG与ml_flag是不一样的，一般习惯用大写<br>        ■定义值中有空格的时候要用双引号引起来（没有空格时可以不用双引号。（makfile中的宏定义不用遵守这种规则））<br>        这使临时使用不同的参数编译文件时可以不必修改makefile<br>●显示规则<br>①　makefile中包含有一些规则，这些规则定义了文件之间的依赖关系和产生命令，一个规则的格式是这样的： </p>
+<pre><code> 目标文件：依赖文件；命令 （方法一） 
+ 或 
+ 目标文件：依赖文件  (方法二) 
+（Tab）命令 
+</code></pre><p>  说明：<br>        ■规则可以用这两种方法，用方法二的时候，命令可以从第二行开始，第一行的“；”省略，但是这时命令前面必须有一个“Tab”字符，否则nmake无法区分这究竟是命 　令还是别的定义。<br>        ■在同一个规则中目标文件可以有多个，依赖文件也可以有多个，同时命令也可以由多个命令行组成，当然这时候就必须用第二种方法定义了，否则无法在同一行中写入多   条命令。<br>        ■nmake默认将整个描述文件的第一条规则中的目标文件认为是最终文件，所以我们必须把最终需要生成的文件放在第一条规则定义<br>  （当用户要求nmake去建造一个目标时，make会去找到这个目标的依赖规则，这时规则中定义的命令并不会立刻被执行，而是首先要做一些事情：▲nmake首先去检查依赖文件是否是另一条规则的目标文件，如果是，则先处理这一条规则，依次类推；▲如果不是，nmake再检查各个依赖文件的时间，看这些文件有没有比目标文件更新的，如果没有，nmake会决定不再建造目标文件，并给出提示：‘xxx文件’is up-to-date，如果依赖文件有比目标文件更新的，才执行命令、生成目标文件。一旦放在第一条的目标文件生成，如果还有其它尚未生成的目标文件没有生成的话，nmake并不去理会，这就说明了为什么我们要把我们想要生成的最终目标文件放在第一条的原因。）<br>        ■目标也可以没有依赖文件，而且目标也可以不是一个真正的文件，比如<br>……<br>              Clean:<br>              (Tab）del <em>.obj<br>              del </em>.res<br>  Clean是一个目标，但我们并不是要生成一个clean文件，而是希望在文件调试完毕后用nmake来清除临时文件，当我们键入nmake clean的时候，工作目录下并没有clean   文件，那么nmake就会去执行clean定义中的命令，因为nmake把每一个不存在的目   标当做是一个过时（out-of-date）的目标（需要重新生成），如此一来，就会执行clean   定义中的命令，如此一来，就会删除中间过程中的文件<em>.obj和</em>.res<br>               ■指出了目标文件全名的规则称为显示规则，便有些类别的文件的编译方法可以是雷同的，如从asm文件产生obj文件的命令总是用ml，从rc文件产生res文件的命令总   是用rc ，对于每个文件都写一条规则有些多余，这时候就要用到隐含规则。 </p>
+<p>●隐含规则<br>①　隐含规则可以为某一类的文件指出建立的命令，它具体定义了如何将带一个特定扩展名的文件转换成具有另一种扩展名的文件，定义的格式是：<br>             .源扩展名.目标扩展名：；命令（方法一）<br>             或<br>             .源扩展名.目标扩展名： （方法二）<br>            （Tab）命令<br>② 隐含规则不能有依赖文件，所以“：”下面没有内容。<br>             .asm.obj:<br>             Ml $(ML_FLAG) $&lt;<br>             .rc.res:<br>             rc $&lt; </p>
+<p>隐含规则中无法指定确定的输入文件名，因为输入文件名是泛指的有相同扩展名的一整类文件，这时候就要用到几个特殊的内定宏来指定文件名：<br>            ▲ $@—–全路径的目标文件。<br>            ▲ $*—–除去扩展名的全路径的目标文件。<br>            ▲ $?—–所有源文件名。<br>            ▲ $&lt;—–源文件名（只能用在隐含规则中）<br>所以上述的rc $&lt;用于x.rc时就是 rc x.rc ,而用于 y.rc 时就是 rc y.rc 了。e</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;●注释和换行&lt;br&gt;① makefile 文件注释以“#”开头，一直到行尾的字符&lt;br&gt;② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。&lt;br&gt;●宏定义（也可称之为变量定义）&lt;br&gt;① 宏定义的语法如下：&lt;br&gt;        变量名＝变量内容&lt;br&gt;② 宏的引用&lt;br&gt;在引用宏时只需在变量前加“$”，被引用的变量名要加圆括号，如下： &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#定义 
+EXE = Test.exe 
+#引用 
+$(EXE) 
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="Ronger" scheme="http://yoursite.com/categories/Ronger/"/>
+    
+      <category term="汇编" scheme="http://yoursite.com/categories/Ronger/%E6%B1%87%E7%BC%96/"/>
+    
+    
+      <category term="win32" scheme="http://yoursite.com/tags/win32/"/>
+    
+      <category term="makefile" scheme="http://yoursite.com/tags/makefile/"/>
+    
+  </entry>
+  
+  <entry>
     <title>GIT添加GITHUB多帐号同步</title>
     <link href="http://yoursite.com/2016/11/13/git%E6%B7%BB%E5%8A%A0%E5%A4%9A%E5%B8%90%E5%8F%B7%E5%90%8C%E6%AD%A5/"/>
     <id>http://yoursite.com/2016/11/13/git添加多帐号同步/</id>
-    <published>2016-11-13T10:01:02.000Z</published>
-    <updated>2016-11-13T10:01:02.000Z</updated>
+    <published>2016-11-13T10:22:03.000Z</published>
+    <updated>2016-11-13T10:22:03.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>电脑里已经有了一个全局的GITHUB帐号,匹配的RSA密钥等</p>
 <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>另外的一个项目需要一个新的GITHUB帐号,且多个项目(帐号)之间能够互不影响的PUSH和PULL</p>
@@ -60,60 +110,14 @@
     
     </summary>
     
-      <category term="git" scheme="http://yoursite.com/categories/git/"/>
+      <category term="Ronger" scheme="http://yoursite.com/categories/Ronger/"/>
     
-      <category term="多帐号" scheme="http://yoursite.com/categories/git/%E5%A4%9A%E5%B8%90%E5%8F%B7/"/>
+      <category term="git" scheme="http://yoursite.com/categories/Ronger/git/"/>
+    
+      <category term="多帐号" scheme="http://yoursite.com/categories/Ronger/git/%E5%A4%9A%E5%B8%90%E5%8F%B7/"/>
     
     
       <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>基于【nmake】的win32asm【makefile】书写规则说明</title>
-    <link href="http://yoursite.com/2016/11/13/%E5%9F%BA%E4%BA%8E%E3%80%90nmake%E3%80%91%E7%9A%84win32asm%E3%80%90makefile%E3%80%91%E4%B9%A6%E5%86%99%E8%A7%84%E5%88%99%E8%AF%B4%E6%98%8E/"/>
-    <id>http://yoursite.com/2016/11/13/基于【nmake】的win32asm【makefile】书写规则说明/</id>
-    <published>2016-11-13T08:39:56.000Z</published>
-    <updated>2016-11-13T08:39:56.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>●注释和换行<br>① makefile 文件注释以“#”开头，一直到行尾的字符<br>② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。<br>●宏定义（也可称之为变量定义）<br>① 宏定义的语法如下：<br>        变量名＝变量内容<br>② 宏的引用<br>在引用宏时只需在变量前加“$”，被引用的变量名要加圆括号，如下： </p>
-<pre><code>#定义 
-EXE = Test.exe 
-#引用 
-$(EXE) 
-</code></pre><a id="more"></a>
-<p>③ 用宏定义的好处不言而喻，但最大的好处是是可以直接在命令行中用新的宏定义覆盖：<br>比如在原makefile中有如下宏定义： </p>
-<pre><code>#编译选项 
-ML_FLAG =  /c  /coff 
-#在命令行中输入： 
-nmake ML_FLAG=&quot; /c  /coff  /F1&quot; 
-</code></pre><p>这里有必要解释一下，此处“覆盖”的意思并不是执行本条命令后makefile文件中宏ML_FLAG的值被物理的改变成“ /c  /coff  /F1”，执行本命令后查看makefile文件，发现宏ML_FLAG的值仍为“/c  /coff ”。此处“覆盖”的真正含义是：仅在执行本条命令遇到makefile文件中宏ML_FLAG时，以“ /c  /coff  /F1”来替换执行。<br>④ 不过关于上述③的使用中有两点需要注意：<br>        ■宏名称要区分大小写，ML_FLAG与ml_flag是不一样的，一般习惯用大写<br>        ■定义值中有空格的时候要用双引号引起来（没有空格时可以不用双引号。（makfile中的宏定义不用遵守这种规则））<br>        这使临时使用不同的参数编译文件时可以不必修改makefile<br>●显示规则<br>①　makefile中包含有一些规则，这些规则定义了文件之间的依赖关系和产生命令，一个规则的格式是这样的： </p>
-<pre><code> 目标文件：依赖文件；命令 （方法一） 
- 或 
- 目标文件：依赖文件  (方法二) 
-（Tab）命令 
-</code></pre><p>  说明：<br>        ■规则可以用这两种方法，用方法二的时候，命令可以从第二行开始，第一行的“；”省略，但是这时命令前面必须有一个“Tab”字符，否则nmake无法区分这究竟是命 　令还是别的定义。<br>        ■在同一个规则中目标文件可以有多个，依赖文件也可以有多个，同时命令也可以由多个命令行组成，当然这时候就必须用第二种方法定义了，否则无法在同一行中写入多   条命令。<br>        ■nmake默认将整个描述文件的第一条规则中的目标文件认为是最终文件，所以我们必须把最终需要生成的文件放在第一条规则定义<br>  （当用户要求nmake去建造一个目标时，make会去找到这个目标的依赖规则，这时规则中定义的命令并不会立刻被执行，而是首先要做一些事情：▲nmake首先去检查依赖文件是否是另一条规则的目标文件，如果是，则先处理这一条规则，依次类推；▲如果不是，nmake再检查各个依赖文件的时间，看这些文件有没有比目标文件更新的，如果没有，nmake会决定不再建造目标文件，并给出提示：‘xxx文件’is up-to-date，如果依赖文件有比目标文件更新的，才执行命令、生成目标文件。一旦放在第一条的目标文件生成，如果还有其它尚未生成的目标文件没有生成的话，nmake并不去理会，这就说明了为什么我们要把我们想要生成的最终目标文件放在第一条的原因。）<br>        ■目标也可以没有依赖文件，而且目标也可以不是一个真正的文件，比如<br>……<br>              Clean:<br>              (Tab）del <em>.obj<br>              del </em>.res<br>  Clean是一个目标，但我们并不是要生成一个clean文件，而是希望在文件调试完毕后用nmake来清除临时文件，当我们键入nmake clean的时候，工作目录下并没有clean   文件，那么nmake就会去执行clean定义中的命令，因为nmake把每一个不存在的目   标当做是一个过时（out-of-date）的目标（需要重新生成），如此一来，就会执行clean   定义中的命令，如此一来，就会删除中间过程中的文件<em>.obj和</em>.res<br>               ■指出了目标文件全名的规则称为显示规则，便有些类别的文件的编译方法可以是雷同的，如从asm文件产生obj文件的命令总是用ml，从rc文件产生res文件的命令总   是用rc ，对于每个文件都写一条规则有些多余，这时候就要用到隐含规则。 </p>
-<p>●隐含规则<br>①　隐含规则可以为某一类的文件指出建立的命令，它具体定义了如何将带一个特定扩展名的文件转换成具有另一种扩展名的文件，定义的格式是：<br>             .源扩展名.目标扩展名：；命令（方法一）<br>             或<br>             .源扩展名.目标扩展名： （方法二）<br>            （Tab）命令<br>② 隐含规则不能有依赖文件，所以“：”下面没有内容。<br>             .asm.obj:<br>             Ml $(ML_FLAG) $&lt;<br>             .rc.res:<br>             rc $&lt; </p>
-<p>隐含规则中无法指定确定的输入文件名，因为输入文件名是泛指的有相同扩展名的一整类文件，这时候就要用到几个特殊的内定宏来指定文件名：<br>            ▲ $@—–全路径的目标文件。<br>            ▲ $*—–除去扩展名的全路径的目标文件。<br>            ▲ $?—–所有源文件名。<br>            ▲ $&lt;—–源文件名（只能用在隐含规则中）<br>所以上述的rc $&lt;用于x.rc时就是 rc x.rc ,而用于 y.rc 时就是 rc y.rc 了。e</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;●注释和换行&lt;br&gt;① makefile 文件注释以“#”开头，一直到行尾的字符&lt;br&gt;② 当一行的内容过长的时候，可以用换行符“/”来继续。※在使用换行符的时候在“/” 后面不要再加上其他任何字符，包括注释和空格。因为只有“/”出现在一行的最后的 时候，nmake才把它当成换行符来解释。&lt;br&gt;●宏定义（也可称之为变量定义）&lt;br&gt;① 宏定义的语法如下：&lt;br&gt;        变量名＝变量内容&lt;br&gt;② 宏的引用&lt;br&gt;在引用宏时只需在变量前加“$”，被引用的变量名要加圆括号，如下： &lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#定义 
-EXE = Test.exe 
-#引用 
-$(EXE) 
-&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-      <category term="汇编" scheme="http://yoursite.com/categories/%E6%B1%87%E7%BC%96/"/>
-    
-    
-      <category term="win32" scheme="http://yoursite.com/tags/win32/"/>
-    
-      <category term="makefile" scheme="http://yoursite.com/tags/makefile/"/>
     
   </entry>
   
