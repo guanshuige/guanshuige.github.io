@@ -272,7 +272,7 @@
               
                 
                 <a class="post-title-link" href="/2016/11/13/git添加多帐号同步/" itemprop="url">
-                  GIT添加*GITHUB多帐号*同步
+                  GIT添加GITHUB多帐号同步
                 </a>
               
             
@@ -285,7 +285,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-13T17:10:27+08:00" content="2016-11-13">
+            <time itemprop="dateCreated" datetime="2016-11-13T18:01:02+08:00" content="2016-11-13">
               2016-11-13
             </time>
           </span>
@@ -338,7 +338,7 @@
 
           
           
-             <span id="/2016/11/13/git添加多帐号同步/" class="leancloud_visitors" data-flag-title="GIT添加*GITHUB多帐号*同步">
+             <span id="/2016/11/13/git添加多帐号同步/" class="leancloud_visitors" data-flag-title="GIT添加GITHUB多帐号同步">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -361,48 +361,14 @@
 
       
         
-          
-            <h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1. 背景"></a>1. 背景</h2><p>电脑里已经有了一个全局的GITHUB帐号,匹配的RSA密钥等</p>
-<h2 id="2-需求"><a href="#2-需求" class="headerlink" title="2. 需求"></a>2. 需求</h2><p>另外的一个项目需要一个新的GITHUB帐号,且多个项目(帐号)之间能够互不影响的PUSH和PULL</p>
-<h2 id="3-思路"><a href="#3-思路" class="headerlink" title="3. 思路"></a>3. 思路</h2><p>删除GITHUB帐号的全局配置,改为按项目配置;生成新的RSA密钥并添加至GITHUB;增加’.ssh’下的RSA密钥<strong>config</strong>配置文件和GITHUB++主机别名++配置,且修改新增项目GITHUB主机的配置为别名配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">graph LR</div><div class="line">删除用户信息全局配置改为按项目配置--&gt;在GITHUB上配置新的项目密钥</div><div class="line">删除用户信息全局配置改为按项目配置--&gt;新建新项目的GITHUB主机别名,并配置到.SSH下的config文件中</div><div class="line">新建新项目的GITHUB主机别名,并配置到.SSH下的config文件中--&gt;配置SSH代理使之生效</div></pre></td></tr></table></figure>
-<h2 id="4-具体操作大纲"><a href="#4-具体操作大纲" class="headerlink" title="4. 具体操作大纲"></a>4. 具体操作大纲</h2><ul>
-<li><p>取消用户的==global==配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">cd</span> ~/.ssh <span class="comment">#切换到users\admin\.ssh</span></div><div class="line">git config --global --unset user.name</div><div class="line">git config --global --unset user.email</div></pre></td></tr></table></figure>
-</li>
-<li><p>设置每个repo自己的user信息</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config user.name <span class="string">"kkaxiao"</span></div><div class="line">git config user.emamil <span class="string">"kkaxiao@gmail.com"</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>新建GITHUB第二个帐号guanshuige的SSH KEY</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#切换到.ssh</span></div><div class="line">ssh-keygen -t rsa -C <span class="string">"guanshuige@gmail.com"</span> <span class="_">-f</span> id_rsa_guanshuige </div><div class="line"><span class="comment">#新ssh key命名为id_rsa_guanshuige以区分id_rsa的默认命名</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>密钥添加到SSH AGENT当中</p>
-<blockquote>
-<p>因为默认只读取id_rsa,为了让SSH识别新的私钥,需要将其添加到ssh agent中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-add id_rsa_guanshuige</div></pre></td></tr></table></figure>
-</blockquote>
-</li>
-</ul>
-<blockquote>
-<p>如果出现Could not open a connection to your authentication agent的错误,就用下面的这个命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-agent bash</div><div class="line">ssh-add id_rsa_work</div></pre></td></tr></table></figure>
-</blockquote>
-<ul>
-<li>修改config文件</li>
-</ul>
-<blockquote>
-<p>在.ssh目录下找到config文件,如果没有就创建:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ touch config   <span class="comment">#创建config文件</span></div></pre></td></tr></table></figure>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#该文件用于配置私钥对应的服务器</span></div><div class="line"><span class="comment">#Default github user(kkaxiao@gmail.com)</span></div><div class="line">Host github.com</div><div class="line">HostName github.com</div><div class="line">User git</div><div class="line">IdentityFile c:/Users/admin/.ssh/id_rsa</div><div class="line"><span class="comment">#second User guanshuige@gmail.com #建立一个GITHUB的别名,新的帐号用这个别名进行clone 和 update</span></div><div class="line">Host github2</div><div class="line">HostName github.com</div><div class="line">User git</div><div class="line">IdentityFile c:/User/admin/.ssh/id_rsa_guanshuige</div></pre></td></tr></table></figure>
-<ul>
-<li>测试<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh -T github2</div><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<h2 id="5-使用"><a href="#5-使用" class="headerlink" title="5. 使用"></a>5. 使用</h2><h6 id="将新的RSA公钥加入到GITHUB帐号后-即可用别名更新提交"><a href="#将新的RSA公钥加入到GITHUB帐号后-即可用别名更新提交" class="headerlink" title="将新的RSA公钥加入到GITHUB帐号后,即可用别名更新提交"></a>将新的RSA公钥加入到GITHUB帐号后,即可用别名更新提交</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> github2:guanshuige/guanshuige.github.io</div><div class="line">$ git push</div><div class="line">$ git pull</div></pre></td></tr></table></figure>
-
-          
+          <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>电脑里已经有了一个全局的GITHUB帐号,匹配的RSA密钥等</p>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>另外的一个项目需要一个新的GITHUB帐号,且多个项目(帐号)之间能够互不影响的PUSH和PULL</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>删除GITHUB帐号的全局配置,改为按项目配置;生成新的RSA密钥并添加至GITHUB;增加’.ssh’下的RSA密钥<strong>config</strong>配置文件和GITHUB++主机别名++配置,且修改新增项目GITHUB主机的配置为别名配置</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/13/git添加多帐号同步/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
