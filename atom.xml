@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-17T08:59:27.000Z</updated>
+  <updated>2016-11-17T09:02:51.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,13 +16,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title>编写博客注意事项</title>
     <link href="http://yoursite.com/2016/11/17/README/"/>
     <id>http://yoursite.com/2016/11/17/README/</id>
-    <published>2016-11-17T08:59:27.000Z</published>
-    <updated>2016-11-17T08:59:27.000Z</updated>
+    <published>2016-11-17T09:02:51.000Z</published>
+    <updated>2016-11-17T09:02:51.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="posts"><a href="#posts" class="headerlink" title="_posts"></a>_posts</h1><h2 id="这里具体介绍如何写文章与github结合。"><a href="#这里具体介绍如何写文章与github结合。" class="headerlink" title="这里具体介绍如何写文章与github结合。"></a>这里具体介绍如何写文章与github结合。</h2><ol>
+    <content type="html"><![CDATA[<h2 id="这里具体介绍如何写文章与github结合。"><a href="#这里具体介绍如何写文章与github结合。" class="headerlink" title="这里具体介绍如何写文章与github结合。"></a>这里具体介绍如何写文章与github结合。</h2><ol>
 <li>每篇文章务必采用markdown标记语言编写</li>
 <li>每篇文章最前面需要加入以下因素：title、categories、tags  </li>
 </ol>
@@ -39,7 +39,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;posts&quot;&gt;&lt;a href=&quot;#posts&quot; class=&quot;headerlink&quot; title=&quot;_posts&quot;&gt;&lt;/a&gt;_posts&lt;/h1&gt;&lt;h2 id=&quot;这里具体介绍如何写文章与github结合。&quot;&gt;&lt;a href=&quot;#这里具体介绍如何写文章与github
+      &lt;h2 id=&quot;这里具体介绍如何写文章与github结合。&quot;&gt;&lt;a href=&quot;#这里具体介绍如何写文章与github结合。&quot; class=&quot;headerlink&quot; title=&quot;这里具体介绍如何写文章与github结合。&quot;&gt;&lt;/a&gt;这里具体介绍如何写文章与github结合。&lt;/
     
     </summary>
     
