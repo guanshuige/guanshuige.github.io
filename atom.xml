@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-17T09:10:10.000Z</updated>
+  <updated>2016-11-18T03:21:53.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>编写博客注意事项</title>
-    <link href="http://yoursite.com/2016/11/17/README/"/>
-    <id>http://yoursite.com/2016/11/17/README/</id>
-    <published>2016-11-17T09:10:10.000Z</published>
-    <updated>2016-11-17T09:10:10.000Z</updated>
+    <link href="http://yoursite.com/2016/11/18/README/"/>
+    <id>http://yoursite.com/2016/11/18/README/</id>
+    <published>2016-11-18T03:21:53.000Z</published>
+    <updated>2016-11-18T03:21:53.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="这里具体介绍如何写文章与github结合。"><a href="#这里具体介绍如何写文章与github结合。" class="headerlink" title="这里具体介绍如何写文章与github结合。"></a>这里具体介绍如何写文章与github结合。</h2><ol>
 <li>每篇文章务必采用markdown标记语言编写</li>
@@ -28,6 +28,11 @@
 </ol>
 <blockquote>
 <p><strong>样例</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: 文章标题</div><div class="line">categories:</div><div class="line">- ronger </div><div class="line">- git</div><div class="line">- 多帐号</div><div class="line">tags:</div><div class="line">- git</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure></p>
+</blockquote>
+<ol>
+<li>有些文章较长，需要增加“阅读全文”功能：请在文章内合适位置添加以下内容即可体现此功能。++<strong><em><a id="more"></a></em></strong>++. </li>
+</ol>
+<blockquote>
 <p><strong>注意</strong>   </p>
 <ol>
 <li>为标识作者，categories第一分类需为作者代号  </li>
@@ -39,7 +44,15 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;这里具体介绍如何写文章与github结合。&quot;&gt;&lt;a href=&quot;#这里具体介绍如何写文章与github结合。&quot; class=&quot;headerlink&quot; title=&quot;这里具体介绍如何写文章与github结合。&quot;&gt;&lt;/a&gt;这里具体介绍如何写文章与github结合。&lt;/
+      &lt;h2 id=&quot;这里具体介绍如何写文章与github结合。&quot;&gt;&lt;a href=&quot;#这里具体介绍如何写文章与github结合。&quot; class=&quot;headerlink&quot; title=&quot;这里具体介绍如何写文章与github结合。&quot;&gt;&lt;/a&gt;这里具体介绍如何写文章与github结合。&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;每篇文章务必采用markdown标记语言编写&lt;/li&gt;
+&lt;li&gt;每篇文章最前面需要加入以下因素：title、categories、tags  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;样例&lt;/strong&gt;：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;7&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;8&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;9&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;10&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;---&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;title: 文章标题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;categories:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- ronger &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- git&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- 多帐号&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;tags:&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;- git&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;comments: false&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;---&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;有些文章较长，需要增加“阅读全文”功能：请在文章内合适位置添加以下内容即可体现此功能。++&lt;strong&gt;&lt;em&gt;
     
     </summary>
     
