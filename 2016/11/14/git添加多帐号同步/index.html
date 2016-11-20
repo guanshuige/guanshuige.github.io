@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="git," />
 
 
 
@@ -86,31 +86,22 @@
 
 
 
-<meta name="description" content="这里具体介绍如何写文章与github结合。
-每篇文章务必采用markdown标记语言编写
-每篇文章最前面需要加入以下因素：title、categories、tags  
-
-
-样例：12345678910---title: 文章标题categories:- ronger - git- 多帐号tags:- gitcomments: false---">
+<meta name="description" content="背景电脑里已经有了一个全局的GITHUB帐号,匹配的RSA密钥等
+需求另外的一个项目需要一个新的GITHUB帐号,且多个项目(帐号)之间能够互不影响的PUSH和PULL
+思路删除GITHUB帐号的全局配置,改为按项目配置;生成新的RSA密钥并添加至GITHUB;增加’.ssh’下的RSA密钥config配置文件和GITHUB++主机别名++配置,且修改新增项目GITHUB主机的配置为别名配置">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编写博客注意事项">
-<meta property="og:url" content="http://yoursite.com/2016/11/18/README/index.html">
+<meta property="og:title" content="GIT添加GITHUB多帐号同步">
+<meta property="og:url" content="http://yoursite.com/2016/11/14/git添加多帐号同步/index.html">
 <meta property="og:site_name" content="观水阁">
-<meta property="og:description" content="这里具体介绍如何写文章与github结合。
-每篇文章务必采用markdown标记语言编写
-每篇文章最前面需要加入以下因素：title、categories、tags  
-
-
-样例：12345678910---title: 文章标题categories:- ronger - git- 多帐号tags:- gitcomments: false---">
-<meta property="og:updated_time" content="2016-11-18T03:49:02.000Z">
+<meta property="og:description" content="背景电脑里已经有了一个全局的GITHUB帐号,匹配的RSA密钥等
+需求另外的一个项目需要一个新的GITHUB帐号,且多个项目(帐号)之间能够互不影响的PUSH和PULL
+思路删除GITHUB帐号的全局配置,改为按项目配置;生成新的RSA密钥并添加至GITHUB;增加’.ssh’下的RSA密钥config配置文件和GITHUB++主机别名++配置,且修改新增项目GITHUB主机的配置为别名配置">
+<meta property="og:updated_time" content="2016-11-14T09:30:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编写博客注意事项">
-<meta name="twitter:description" content="这里具体介绍如何写文章与github结合。
-每篇文章务必采用markdown标记语言编写
-每篇文章最前面需要加入以下因素：title、categories、tags  
-
-
-样例：12345678910---title: 文章标题categories:- ronger - git- 多帐号tags:- gitcomments: false---">
+<meta name="twitter:title" content="GIT添加GITHUB多帐号同步">
+<meta name="twitter:description" content="背景电脑里已经有了一个全局的GITHUB帐号,匹配的RSA密钥等
+需求另外的一个项目需要一个新的GITHUB帐号,且多个项目(帐号)之间能够互不影响的PUSH和PULL
+思路删除GITHUB帐号的全局配置,改为按项目配置;生成新的RSA密钥并添加至GITHUB;增加’.ssh’下的RSA密钥config配置文件和GITHUB++主机别名++配置,且修改新增项目GITHUB主机的配置为别名配置">
 
 
 
@@ -131,10 +122,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/11/18/README/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/11/14/git添加多帐号同步/"/>
 
 
-  <title> 编写博客注意事项 | 观水阁 </title>
+  <title> GIT添加GITHUB多帐号同步 | 观水阁 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +285,7 @@
             
             
               
-                编写博客注意事项
+                GIT添加GITHUB多帐号同步
               
             
           </h1>
@@ -306,20 +297,72 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-18T11:49:02+08:00" content="2016-11-18">
-              2016-11-18
+            <time itemprop="dateCreated" datetime="2016-11-14T17:30:46+08:00" content="2016-11-14">
+              2016-11-14
             </time>
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ronger/" itemprop="url" rel="index">
+                    <span itemprop="name">Ronger</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ronger/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Ronger/git/多帐号/" itemprop="url" rel="index">
+                    <span itemprop="name">多帐号</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/14/git添加多帐号同步/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/14/git添加多帐号同步/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
 
           
 
           
-
           
-          
-             <span id="/2016/11/18/README/" class="leancloud_visitors" data-flag-title="编写博客注意事项">
+             <span id="/2016/11/14/git添加多帐号同步/" class="leancloud_visitors" data-flag-title="GIT添加GITHUB多帐号同步">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -341,26 +384,34 @@
       
 
       
-        <h2 id="这里具体介绍如何写文章与github结合。"><a href="#这里具体介绍如何写文章与github结合。" class="headerlink" title="这里具体介绍如何写文章与github结合。"></a>这里具体介绍如何写文章与github结合。</h2><ol>
-<li>每篇文章务必采用markdown标记语言编写</li>
-<li>每篇文章最前面需要加入以下因素：title、categories、tags  </li>
-</ol>
-<blockquote>
-<p><strong>样例</strong>：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">---</div><div class="line">title: 文章标题</div><div class="line">categories:</div><div class="line">- ronger </div><div class="line">- git</div><div class="line">- 多帐号</div><div class="line">tags:</div><div class="line">- git</div><div class="line">comments: false</div><div class="line">---</div></pre></td></tr></table></figure></p>
-</blockquote>
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>电脑里已经有了一个全局的GITHUB帐号,匹配的RSA密钥等</p>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>另外的一个项目需要一个新的GITHUB帐号,且多个项目(帐号)之间能够互不影响的PUSH和PULL</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><p>删除GITHUB帐号的全局配置,改为按项目配置;生成新的RSA密钥并添加至GITHUB;增加’.ssh’下的RSA密钥<strong>config</strong>配置文件和GITHUB++主机别名++配置,且修改新增项目GITHUB主机的配置为别名配置</p>
 <a id="more"></a>
-<ol>
-<li>有些文章较长，需要增加“阅读全文”功能：请在文章内合适位置添加以下内容即可体现此功能。 </li>
-</ol>
-<blockquote>
-<p>&lt;!– more –></p>
-<p><strong>注意</strong>   </p>
-<ol>
-<li>为标识作者，categories第一分类需为作者代号  </li>
-<li>一般情况下，默认是开放评论的，如确有需要，某篇文章不开放评论可以在上面添加<strong>comments: false</strong>即可。  </li>
-<li>需要注意一下文件目录，next主题是以#标题做为目录索引的。 </li>
-</ol>
+<h1 id="具体操作大纲"><a href="#具体操作大纲" class="headerlink" title="具体操作大纲"></a>具体操作大纲</h1><h2 id="取消用户的global配置"><a href="#取消用户的global配置" class="headerlink" title="取消用户的global配置"></a>取消用户的<strong><em>global</em></strong>配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">cd</span> ~/.ssh <span class="comment">#切换到users\admin\.ssh</span></div><div class="line">git config --global --unset user.name</div><div class="line">git config --global --unset user.email</div></pre></td></tr></table></figure>
+<h2 id="设置每个repo自己的user信息"><a href="#设置每个repo自己的user信息" class="headerlink" title="设置每个repo自己的user信息"></a>设置每个repo自己的user信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config user.name <span class="string">"kkaxiao"</span></div><div class="line">git config user.emamil <span class="string">"kkaxiao@gmail.com"</span></div></pre></td></tr></table></figure>
+<h2 id="新建GITHUB第二个帐号guanshuige的SSH-KEY"><a href="#新建GITHUB第二个帐号guanshuige的SSH-KEY" class="headerlink" title="新建GITHUB第二个帐号guanshuige的SSH KEY"></a>新建GITHUB第二个帐号guanshuige的SSH KEY</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#切换到.ssh</span></div><div class="line">ssh-keygen -t rsa -C <span class="string">"guanshuige@gmail.com"</span> <span class="_">-f</span> id_rsa_guanshuige </div><div class="line"><span class="comment">#新ssh key命名为id_rsa_guanshuige以区分id_rsa的默认命名</span></div></pre></td></tr></table></figure>
+<h2 id="密钥添加到SSH-AGENT当中"><a href="#密钥添加到SSH-AGENT当中" class="headerlink" title="密钥添加到SSH AGENT当中"></a>密钥添加到SSH AGENT当中</h2><blockquote>
+<p>因为默认只读取id_rsa,为了让SSH识别新的私钥,需要将其添加到ssh agent中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-add id_rsa_guanshuige</div></pre></td></tr></table></figure></p>
 </blockquote>
+<p>如果出现Could not open a connection to your authentication agent的错误,就用下面的这个命令:</p>
+<ul>
+<li>ssh-agent bash<blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssh-agent bash</div><div class="line">ssh-add id_rsa_work</div></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h2 id="修改config文件"><a href="#修改config文件" class="headerlink" title="修改config文件"></a>修改config文件</h2><blockquote>
+<p>在.ssh目录下找到config文件,如果没有就创建:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ touch config   <span class="comment">#创建config文件</span></div></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#该文件用于配置私钥对应的服务器</span></div><div class="line"><span class="comment">#Default github user(kkaxiao@gmail.com)</span></div><div class="line">Host github.com</div><div class="line">HostName github.com</div><div class="line">User git</div><div class="line">IdentityFile c:/Users/admin/.ssh/id_rsa</div><div class="line"><span class="comment">#second User guanshuige@gmail.com #建立一个GITHUB的别名,新的帐号用这个别名进行clone 和 update</span></div><div class="line">Host github2</div><div class="line">HostName github.com</div><div class="line">User git</div><div class="line">IdentityFile c:/User/admin/.ssh/id_rsa_guanshuige</div></pre></td></tr></table></figure>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ssh -T github2</div><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><ul>
+<li>将新的RSA公钥加入到GITHUB帐号后,即可用别名更新提交<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> github2:guanshuige/guanshuige.github.io</div><div class="line">$ git push</div><div class="line">$ git pull</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -381,18 +432,28 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/14/git添加多帐号同步/" rel="next" title="GIT添加GITHUB多帐号同步">
-                <i class="fa fa-chevron-left"></i> GIT添加GITHUB多帐号同步
+              <a href="/2016/11/14/基于【nmake】的win32asm【makefile】书写规则说明/" rel="next" title="基于【nmake】的win32asm【makefile】书写规则说明">
+                <i class="fa fa-chevron-left"></i> 基于【nmake】的win32asm【makefile】书写规则说明
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/18/README/" rel="prev" title="编写博客注意事项">
+                编写博客注意事项 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -439,6 +500,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/14/git添加多帐号同步/"
+           data-title="GIT添加GITHUB多帐号同步" data-url="http://yoursite.com/2016/11/14/git添加多帐号同步/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -566,7 +635,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#这里具体介绍如何写文章与github结合。"><span class="nav-number">1.</span> <span class="nav-text">这里具体介绍如何写文章与github结合。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#需求"><span class="nav-number">2.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">3.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体操作大纲"><span class="nav-number">4.</span> <span class="nav-text">具体操作大纲</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取消用户的global配置"><span class="nav-number">4.1.</span> <span class="nav-text">取消用户的global配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置每个repo自己的user信息"><span class="nav-number">4.2.</span> <span class="nav-text">设置每个repo自己的user信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建GITHUB第二个帐号guanshuige的SSH-KEY"><span class="nav-number">4.3.</span> <span class="nav-text">新建GITHUB第二个帐号guanshuige的SSH KEY</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#密钥添加到SSH-AGENT当中"><span class="nav-number">4.4.</span> <span class="nav-text">密钥添加到SSH AGENT当中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改config文件"><span class="nav-number">4.5.</span> <span class="nav-text">修改config文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">4.6.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">5.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
           </div>
         </section>
